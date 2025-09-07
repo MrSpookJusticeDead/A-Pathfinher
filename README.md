@@ -11,14 +11,14 @@ Perfect for NPCs, mobs, and AI that need reliable navigation in custom maps.
 
 ---
 
-## 📦 Installation
+## Installation
 
 1. Place `AdvancedPathfinder` as a **ModuleScript** in `ReplicatedStorage/Pathfinding/`.
 2. `require()` it in your scripts.
 
 ---
 
-## 🚀 Usage Example
+##  Usage Example
 
 ```lua
 local AdvancedPathfinder = require(game.ReplicatedStorage.Pathfinding.AdvancedPathfinder)
@@ -43,3 +43,41 @@ local path = pf:FindPath(start, goal)
 if path then
     pf:VisualizePath(path, 8)
 end
+```
+
+⚙️ API Reference
+AdvancedPathfinder.new(origin: Vector3, size: Vector3, settings: Settings?) -> Pathfinder
+
+Creates a new pathfinder grid in the defined region.
+
+origin: Center of the nav area.
+
+size: Dimensions (X, Y, Z) of the nav area.
+
+settings: Optional settings table (see below).
+
+Pathfinder Methods
+FindPath(from: Vector3, to: Vector3) -> {Vector3}?
+
+Finds a path between two world positions.
+Returns an array of waypoints (Vector3) or nil if no path found.
+
+VisualizePath(path: {Vector3}, lifetime: number?)
+
+Draws the path with neon parts for debugging.
+
+Rebuild(newOrigin?: Vector3, newSize?: Vector3)
+
+Rebuilds the navigation grid (use if world changes significantly).
+
+GetNearestNodePosition(worldPos: Vector3) -> Vector3?
+
+Returns the closest walkable node position to the given point.
+
+SetSetting(key: string, value: any)
+
+Change a setting dynamically after creation.
+
+Destroy()
+
+Cleans up the pathfinder instance and debug parts.
